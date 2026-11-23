@@ -30,11 +30,15 @@ jobs:
       - name: Build and package for Firefox
         run: npm run zip:firefox
 
+      - name: Debug output files
+        run: ls -la .output/
+
       - name: Upload Chrome Artifact
         uses: actions/upload-artifact@v4
         with:
           name: addon-chrome
           path: .output/*-chrome.zip
+          include-hidden-files: true
           retention-days: 30
 
       - name: Upload Firefox Artifact
@@ -42,4 +46,5 @@ jobs:
         with:
           name: addon-firefox
           path: .output/*-firefox.zip
+          include-hidden-files: true
           retention-days: 30
